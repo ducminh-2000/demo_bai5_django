@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Publisher</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+</head>
+
+<body>
+    <div class="container">
+        <table class="table table-striped table-bordered table-sm">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Publisher ID</th>
+                    <th>Publisher Name</th>
+                    <th>Publisher Address</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for publisher in publishers %}
+                <tr>
+                    <td>{{ publisher.id }}</td>
+                    <td>{{ publisher.name }}</td>
+                    <td>{{ publisher.address }}</td>
+                    <td>
+                        <a href="/publisher/edit/{{ publisher.id }}"><span class="glyphicon glyphicon-pencil">Edit</span></a>
+                        <a href="/publisher/delete/{{ publisher.id }}">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <br>
+    <br>
+    <center><a href="/publisher/create" class="btn btn-primary">Add New Record</a></center>
+</body>
+
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>book</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+</head>
+
+<body>
+    <div class="container">
+        <table class="table table-striped table-bordered table-sm">
+            <thead class="thead-dark">
+                <tr>
+                    <th>book ID</th>
+                    <th>book title</th>
+                    <th>book category</th>
+                    <th>book language</th>
+                    <th>number of page</th>
+                    <th>publisher</th>
+                    <th>author</th>
+                    <th>publication date</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for book in books %}
+                <tr>
+                    <td>{{ book.id }}</td>
+                    <td>{{ book.title }}</td>
+                    <td>{{ book.bookcategory.name}}</td>
+                    <td>{{ book.language }}</td>
+                    <td>{{ book.numberOfPage }}</td>
+                    <td>{{ book.publisher.name }}</td>
+                    <td>
+                        {% for author in book.author %}
+                        <span>
+                            {{author.name}}
+                        </span>
+                        {% endfor %}
+                    </td>
+                    <td>{{ book.publicationDate }}</td>
+                    <td>
+                        <a href="/book/edit/{{ book.id }}"><span class="glyphicon glyphicon-pencil">Edit</span></a>
+                        <a href="/book/delete/{{ book.id }}">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <br>
+    <br>
+    <center><a href="/book/create" class="btn btn-primary">Add New Record</a></center>
+</body>
+
+</html>

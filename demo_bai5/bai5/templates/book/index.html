@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Index</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+</head>
+
+<body>
+    <div class="container">
+        <form method="POST" class="post-form" action="/book/create">
+            {% csrf_token %}
+            <d class="container">
+                <br>
+                <div class="form-group row">
+                    <label class="col-sm-1 col-form-label"></label>
+                    <div class="col-sm-4">
+                        <h3>Enter Details</h3>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">book id:</label>
+                    <div class="col-sm-4">
+                        {{ form.id }}
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">book title:</label>
+                    <div class="col-sm-4">
+                        {{ form.title }}
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">category:</label>
+                    <div class="col-sm-4">
+                        <select name="categoryId" id="categoryId">
+                            {% for category in categories %}
+                            <option value="{{category.id}}">{{category.name}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">book language:</label>
+                    <div class="col-sm-4">
+                        {{ form.language }}"
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">number of page</label>
+                    <div class="col-sm-4">
+                        {{ form.numberOfPage }}
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">book publication date:</label>
+                    <div class="col-sm-4">
+                        {{ form.publicationDate }}
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">publisher:</label>
+                    <div class="col-sm-4">
+                        <select name="publisherId" id="publisherId">
+                            {% for publisher in publishers %}
+                            <option value="{{publisher.id}}">{{publisher.name}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">author:</label>
+                    <div class="col-sm-4">
+                        <select name="author" multiple id="author">
+                            {% for author in authors %}
+                            <option value="{{author}}">{{author.name}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-1 col-form-label"></label>
+                    <div class="col-sm-4">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </div>
+        </form>
+    </div>
+</body>
+
+</html>

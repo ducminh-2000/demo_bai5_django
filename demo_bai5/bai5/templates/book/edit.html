@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Index</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+</head>
+
+<body>
+    <div class="container">
+        <form method="POST" class="post-form" action="author/update/{{book.id}}">
+            {% csrf_token %}
+            <div class="container">
+                <br>
+                <div class="form-group row">
+                    <label class="col-sm-1 col-form-label"></label>
+                    <div class="col-sm-4">
+                        <h3>Update Details</h3>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">book Id:</label>
+                    <div class="col-sm-4">
+                        <input readonly type="text" name="id" id="id" required maxlength="20" value="{{ book.id }}" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">book title:</label>
+                    <div class="col-sm-4">
+                        <input type="text" name="name" id="name" required maxlength="255"
+                            value="{{ book.title }}" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">publisher:</label>
+                    <div class="col-sm-4">
+                        <select name="publisherId" id="publisherId" >
+                            <option value="{{book.publisherId}}">{{book.publisher.name}}</option>
+                            {% for publisher in publishers %}
+                            <option value="{{publisher.id}}">{{publisher.name}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">book language:</label>
+                    <div class="col-sm-4">
+                        <input type="text" name="bigraphy" id="language" required maxlength="254"
+                            value="{{ book.language }}" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">number of page</label>
+                    <div class="col-sm-4">
+                        <input type="number" name="bigraphy" id="language" required maxlength="254"
+                            value="{{ book.numberOfPage }}" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">book publication date:</label>
+                    <div class="col-sm-4">
+                        <input type="date" name="publicationDate" id="publicationDate" required maxlength="254"
+                            value="{{ book.publicationDate }}" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-1 col-form-label"></label>
+                    <div class="col-sm-4">
+                        <button type="submit" class="btn btn-success">Update</button>
+                    </div>
+                    <label class="col-sm-1 col-form-label"></label>
+                    <div class="col-sm-4">
+                        <button class="btn btn-danger"><a href="/book/show">Cancle</a></button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>
