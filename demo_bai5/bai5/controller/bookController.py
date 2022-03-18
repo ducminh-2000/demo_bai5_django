@@ -12,15 +12,6 @@ class BookController():
             if form.is_valid():  
                 try: 
                     form.save()
-                    # book = Book.objects.create(
-                    #     title=form.cleaned_data['title'],
-                    #     language=form.cleaned_data['language'],
-                    #     categoryID=form.cleaned_data['categoryId'],
-                    #     numberOfPage=form.cleaned_data['numberOfPage'],
-                    #     publicationDate=form.cleaned_data['publicationDate'],
-                    #     publisherId=form.cleaned_data['publisherId'],
-                    #     author=form.cleaned_data['author']
-                    # ) 
                     return redirect('/book/show')  
                 except:  
                     pass  
